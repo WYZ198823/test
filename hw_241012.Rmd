@@ -1,9 +1,9 @@
-# Initial data
+# create data
 plants <- c("plant 1", "plant 2", "plant 3", "plant 4", "plant 5")
 start_height <- c(10.5, 12.3, 9.8, 11.4, 13.1)  
 end_height <- c(12.0, 12.8, 10.1, 12.5, 13.0)   
 
-# Create data frame
+# data frame
 experiment_df <- data.frame(
   plant = plants,
   start_experiment = start_height,
@@ -11,7 +11,7 @@ experiment_df <- data.frame(
   stringsAsFactors = FALSE
 )
 
-# Reformat to get height in one column and time as a factor
+# factor
 library(tidyr)
 experiment_long <- pivot_longer(experiment_df, 
                                 cols = c(start_experiment, end_experiment), 
@@ -19,7 +19,7 @@ experiment_long <- pivot_longer(experiment_df,
                                 values_to = "height")
 experiment_long$time <- factor(experiment_long$time, levels = c("start_experiment", "end_experiment"))
 
-# Print the data frame
+# Print
 experiment_long
 
 # Calculate the percentage growth
@@ -32,15 +32,12 @@ growth_list <- list(
   summary_table = data.frame(plants = plants, growth = growth_percent)
 )
 
-# Create a message about the growth status
-growth_message <- "The plants show varying growth, with some positive and negative changes in height."
 
 # Combine into 'my.experiment' list
 my.experiment <- list(
   experiment_data = experiment_long,
   growth = growth_list,
-  message = growth_message
 )
 
-# View the list
+# list
 my.experiment
